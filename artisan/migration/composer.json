@@ -1,0 +1,25 @@
+{
+  "name": "artisan/migration",
+  "description": "The ThinkCMF Core Package",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "小夏",
+      "email": "yyw168@vip.qq.com"
+    }
+  ],
+  "require": {
+    "robmorgan/phinx": "^0.12.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "artisan\\": "src"
+    },
+    "files": [
+      "src/config.php"
+    ]
+  },
+  "require-dev": {
+    "topthink/framework": "^5.0"
+  }
+}
