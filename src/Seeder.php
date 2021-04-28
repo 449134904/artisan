@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
-namespace migration;
+namespace xia\migration;
 
 use Phinx\Seed\AbstractSeed;
 

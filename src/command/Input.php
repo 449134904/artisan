@@ -1,7 +1,7 @@
 <?php
 
 
-namespace migration\command;
+namespace xia\migration\command;
 
 
 use Symfony\Component\Console\Input\InputDefinition;

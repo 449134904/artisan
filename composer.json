@@ -13,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "migration\\": "src"
+      "xia\\migration\\": "src"
     },
     "files": [
       "src/config.php"

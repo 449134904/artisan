@@ -7,9 +7,9 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace migration\command\migrate;
+namespace xia\migration\command\migrate;
 
-use migration\command\Migrate;
+use xia\migration\command\Migrate;
 use DateTime;
 use Phinx\Migration\MigrationInterface;
 use think\console\Input;

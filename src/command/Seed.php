@@ -9,9 +9,9 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace migration\command;
+namespace xia\migration\command;
 
-use migration\Seeder;
+use xia\migration\Seeder;
 use Phinx\Seed\AbstractSeed;
 use Phinx\Util\Util;
 

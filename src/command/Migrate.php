@@ -1,7 +1,7 @@
 <?php
 
 
-namespace migration;
+namespace xia\migration\command;
 
 
 use InvalidArgumentException;

@@ -7,9 +7,9 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace migration\command\seed;
+namespace xia\migration\command\seed;
 
-use migration\command\Seed;
+use xia\migration\command\Seed;
 use InvalidArgumentException;
 use Phinx\Util\Util;
 use think\console\Input;

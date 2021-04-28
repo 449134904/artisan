@@ -1,10 +1,10 @@
 <?php
 
 
-namespace migration;
+namespace xia\migration;
 
 
-use migration\command\db\Table;
+use xia\migration\command\db\Table;
 use Phinx\Migration\AbstractMigration;
 
 class Migrator extends AbstractMigration

@@ -7,9 +7,9 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace migration\command\seed;
+namespace xia\migration\command\seed;
 
-use migration\command\Seed;
+use xia\migration\command\Seed;
 use Phinx\Seed\SeedInterface;
 use think\console\Input;
 use think\console\input\Option as InputOption;

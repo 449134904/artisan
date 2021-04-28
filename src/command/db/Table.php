@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace migration\command\db;
+namespace xia\migration\command\db;
 
 
 use Phinx\Db\Table\Index;
