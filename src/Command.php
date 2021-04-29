@@ -54,27 +54,27 @@ abstract class Command extends \think\console\Command
 
         if ($config['deploy'] == 0) {
             $dbConfig = [
-                'adapter'      => $config['type'],
-                'host'         => $config['hostname'],
-                'name'         => $config['database'],
-                'user'         => $config['username'],
-                'pass'         => $config['password'],
-                'port'         => $config['hostport'],
-                'charset'      => $config['charset'],
-                'table_prefix' => $config['prefix'],
-                'version_order'=>$config['version_order'],
+                'adapter'       => $config['type'],
+                'host'          => $config['hostname'],
+                'name'          => $config['database'],
+                'user'          => $config['username'],
+                'pass'          => $config['password'],
+                'port'          => $config['hostport'],
+                'charset'       => $config['charset'],
+                'table_prefix'  => $config['prefix'],
+                'version_order' => $config['version_order'] ?? 'version_order',
             ];
         } else {
             $dbConfig = [
-                'adapter'      => explode(',', $config['type'])[0],
-                'host'         => explode(',', $config['hostname'])[0],
-                'name'         => explode(',', $config['database'])[0],
-                'user'         => explode(',', $config['username'])[0],
-                'pass'         => explode(',', $config['password'])[0],
-                'port'         => explode(',', $config['hostport'])[0],
-                'charset'      => explode(',', $config['charset'])[0],
-                'table_prefix' => explode(',', $config['prefix'])[0],
-                'version_order' => explode(',', $config['version_order'])[0],
+                'adapter'       => explode(',', $config['type'])[0],
+                'host'          => explode(',', $config['hostname'])[0],
+                'name'          => explode(',', $config['database'])[0],
+                'user'          => explode(',', $config['username'])[0],
+                'pass'          => explode(',', $config['password'])[0],
+                'port'          => explode(',', $config['hostport'])[0],
+                'charset'       => explode(',', $config['charset'])[0],
+                'table_prefix'  => explode(',', $config['prefix'])[0],
+                'version_order' => explode(',', $config['version_order'])[0] ?? 'version_order',
             ];
         }
 
