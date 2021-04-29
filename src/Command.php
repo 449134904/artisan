@@ -62,7 +62,7 @@ abstract class Command extends \think\console\Command
                 'port'          => $config['hostport'],
                 'charset'       => $config['charset'],
                 'table_prefix'  => $config['prefix'],
-                'version_order' => $config['version_order'] ?? 'version_order',
+                'version_order' => $config['version_order'] ?? 'creation',
             ];
         } else {
             $dbConfig = [
@@ -74,7 +74,7 @@ abstract class Command extends \think\console\Command
                 'port'          => explode(',', $config['hostport'])[0],
                 'charset'       => explode(',', $config['charset'])[0],
                 'table_prefix'  => explode(',', $config['prefix'])[0],
-                'version_order' => explode(',', $config['version_order'])[0] ?? 'version_order',
+                'version_order' => explode(',', $config['version_order'])[0] ?? 'creation',
             ];
         }
 
