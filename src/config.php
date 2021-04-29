@@ -7,8 +7,8 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 \think\Console::addDefaultCommands([
-    "migration\\command\\migrate\\Create",
-    "migration\\command\\migrate\\Run",
-    "migration\\command\\seed\\Create",
-    "migration\\command\\seed\\Run",
+    "xia\\migration\\command\\migrate\\Create",
+    "xia\\migration\\command\\migrate\\Run",
+    "xia\\migration\\command\\seed\\Create",
+    "xia\\migration\\command\\seed\\Run",
 ]);

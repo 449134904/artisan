@@ -12,7 +12,7 @@ use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;
 use think\console\input\Option as InputOption;
 use think\Exception;
-
+use xia\migration\Command;
 
 abstract class Migrate extends Command
 {

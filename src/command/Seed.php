@@ -14,7 +14,7 @@ namespace xia\migration\command;
 use xia\migration\Seeder;
 use Phinx\Seed\AbstractSeed;
 use Phinx\Util\Util;
-
+use xia\migration\Command;
 
 abstract class Seed extends Command
 {

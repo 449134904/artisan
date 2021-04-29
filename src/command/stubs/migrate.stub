@@ -1,7 +1,6 @@
 <?php
 
-use migration\command\Migrator;
-use migration\command\db\Column;
+use xia\migration\Migrator;
 
 class $className extends Migrator
 {
