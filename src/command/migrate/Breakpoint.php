@@ -11,9 +11,9 @@
 
 namespace xia\migration\command\migrate;
 
-use xia\console\Input;
-use xia\console\input\Option as InputOption;
-use xia\console\Output;
+use think\console\Input;
+use think\console\input\Option as InputOption;
+use think\console\Output;
 use xia\migration\command\Migrate;
 
 class Breakpoint extends Migrate
