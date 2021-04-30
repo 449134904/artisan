@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace think\migration\command;
+namespace xia\migration\command;
 
 use Phinx\Db\Adapter\AdapterFactory;
 use Phinx\Db\Adapter\ProxyAdapter;

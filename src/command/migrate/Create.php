@@ -11,10 +11,10 @@ namespace xia\migration\command\migrate;
 
 use InvalidArgumentException;
 use RuntimeException;
-use xia\console\Command;
-use xia\console\Input;
-use xia\console\input\Argument as InputArgument;
-use xia\console\Output;
+use think\console\Command;
+use think\console\Input;
+use think\console\input\Argument as InputArgument;
+use think\console\Output;
 use xia\migration\Creator;
 
 class Create extends Command

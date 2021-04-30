@@ -10,9 +10,9 @@
 namespace xia\migration\command\seed;
 
 use Phinx\Util\Util;
-use xia\console\Input;
-use xia\console\input\Argument as InputArgument;
-use xia\console\Output;
+use think\console\Input;
+use think\console\input\Argument as InputArgument;
+use think\console\Output;
 use xia\migration\command\Seed;
 
 class Create extends Seed
