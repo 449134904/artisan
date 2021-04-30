@@ -13,9 +13,8 @@ namespace xia\migration\command\factory;
 
 use InvalidArgumentException;
 use Phinx\Util\Util;
-use RuntimeException;
-use xia\console\Command;
-use xia\console\input\Argument as InputArgument;
+use think\console\Command;
+use think\console\input\Argument as InputArgument;
 
 class Create extends Command
 {
@@ -64,7 +63,7 @@ class Create extends Command
         ]);
 
         if (false === file_put_contents($filePath, $contents)) {
-            throw new RuntimeException(sprintf('The file "%s" could not be written to', $path));
+            throw new InvalidArgumentException(sprintf('The file "%s" could not be written to', $path));
         }
 
         $this->output->writeln('<info>created</info> .' . str_replace(getcwd(), '', $filePath));
