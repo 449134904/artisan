@@ -19,7 +19,7 @@
     }
   },
   "extra": {
-    "xia": {
+    "think": {
       "services": [
         "xia\\migration\\Service"
       ]
