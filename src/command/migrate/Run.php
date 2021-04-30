@@ -9,14 +9,11 @@
 
 namespace xia\migration\command\migrate;
 
-use xia\migration\command\Migrate;
-use DateTime;
 use Phinx\Migration\MigrationInterface;
-use think\console\Input;
-use think\console\input\Option as InputOption;
-use think\console\Output;
-use think\Exception;
-
+use xia\console\Input;
+use xia\console\input\Option as InputOption;
+use xia\console\Output;
+use xia\migration\command\Migrate;
 
 class Run extends Migrate
 {
@@ -26,28 +23,26 @@ class Run extends Migrate
     protected function configure()
     {
         $this->setName('migrate:run')
-             ->setDescription('Migrate the database')
-             ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to migrate to')
-             ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to migrate to')
-             ->setHelp(<<<EOT
+            ->setDescription('Migrate the database')
+            ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to migrate to')
+            ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to migrate to')
+            ->setHelp(<<<EOT
 The <info>migrate:run</info> command runs all available migrations, optionally up to a specific version
 
-<info>php console migrate:run</info>
-<info>php console migrate:run -t 20110103081132</info>
-<info>php console migrate:run -d 20110103</info>
-<info>php console migrate:run -v</info>
+<info>php think migrate:run</info>
+<info>php think migrate:run -t 20110103081132</info>
+<info>php think migrate:run -d 20110103</info>
+<info>php think migrate:run -v</info>
 
 EOT
-             );
+            );
     }
 
     /**
-     * @param Input $input
+     * Migrate the database.
+     *
+     * @param Input  $input
      * @param Output $output
-     * @return void
-     * @throws Exception
-     * @author : 小夏
-     * @date   : 2021-04-28 16:10:39
      */
     protected function execute(Input $input, Output $output)
     {
@@ -57,7 +52,7 @@ EOT
         // run the migrations
         $start = microtime(true);
         if (null !== $date) {
-            $this->migrateToDateTime(new DateTime($date));
+            $this->migrateToDateTime(new \DateTime($date));
         } else {
             $this->migrate($version);
         }
@@ -67,13 +62,7 @@ EOT
         $output->writeln('<comment>All Done. Took ' . sprintf('%.4fs', $end - $start) . '</comment>');
     }
 
-    /**
-     * @param DateTime $dateTime
-     * @throws Exception
-     * @author : 小夏
-     * @date   : 2021-04-28 16:10:32
-     */
-    public function migrateToDateTime(DateTime $dateTime)
+    public function migrateToDateTime(\DateTime $dateTime)
     {
         $versions   = array_keys($this->getMigrations());
         $dateString = $dateTime->format('YmdHis');
@@ -89,12 +78,6 @@ EOT
         }
     }
 
-    /**
-     * @param null $version
-     * @throws Exception
-     * @author : 小夏
-     * @date   : 2021-04-28 16:08:57
-     */
     protected function migrate($version = null)
     {
         $migrations = $this->getMigrations();
@@ -132,26 +115,17 @@ EOT
         }
 
         ksort($migrations);
-
         foreach ($migrations as $migration) {
-
             if ($migration->getVersion() > $version) {
                 break;
             }
 
             if (!in_array($migration->getVersion(), $versions)) {
-
-                $this->executeMigration($migration);
+                $this->executeMigration($migration, MigrationInterface::UP);
             }
         }
     }
 
-    /**
-     * @return false|int|mixed
-     * @throws Exception
-     * @author : 小夏
-     * @date   : 2021-04-28 16:10:18
-     */
     protected function getCurrentVersion()
     {
         $versions = $this->getVersions();

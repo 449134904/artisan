@@ -2,7 +2,7 @@
 
 use xia\migration\Migrator;
 
-class $className extends Migrator
+class MigratorClass extends Migrator
 {
     /**
      * Change Method.
