@@ -16,9 +16,13 @@
   "autoload": {
     "psr-4": {
       "xia\\migration\\": "src"
-    },
-    "files": [
-      "src/config.php"
-    ]
+    }
+  },
+  "extra": {
+    "think": {
+      "services": [
+        "think\\migration\\Service"
+      ]
+    }
   }
 }
