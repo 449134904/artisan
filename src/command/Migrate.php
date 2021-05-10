@@ -11,6 +11,7 @@
 
 namespace xia\migration\command;
 
+use InvalidArgumentException;
 use Phinx\Db\Adapter\AdapterFactory;
 use Phinx\Db\Adapter\ProxyAdapter;
 use Phinx\Migration\AbstractMigration;
@@ -107,14 +108,14 @@ abstract class Migrate extends Command
                     $version = Util::getVersionFromFileName(basename($filePath));
 
                     if (isset($versions[$version])) {
-                        throw new \InvalidArgumentException(sprintf('Duplicate migration - "%s" has the same version as "%s"', $filePath, $versions[$version]->getVersion()));
+                        throw new InvalidArgumentException(sprintf('Duplicate migration - "%s" has the same version as "%s"', $filePath, $versions[$version]->getVersion()));
                     }
 
                     // convert the filename to a class name
                     $class = Util::mapFileNameToClassName(basename($filePath));
 
                     if (isset($fileNames[$class])) {
-                        throw new \InvalidArgumentException(sprintf('Migration "%s" has the same name as "%s"', basename($filePath), $fileNames[$class]));
+                        throw new InvalidArgumentException(sprintf('Migration "%s" has the same name as "%s"', basename($filePath), $fileNames[$class]));
                     }
 
                     $fileNames[$class] = basename($filePath);
@@ -123,14 +124,17 @@ abstract class Migrate extends Command
                     /** @noinspection PhpIncludeInspection */
                     require_once $filePath;
                     if (!class_exists($class)) {
-                        throw new \InvalidArgumentException(sprintf('Could not find class "%s" in file "%s"', $class, $filePath));
+                        throw new InvalidArgumentException(sprintf('Could not find class "%s" in file "%s"', $class, $filePath));
                     }
 
                     // instantiate it
-                    $migration = new $class($version, $this->input, $this->output);
+                    $this->input  = new Input();
+                    $this->output = new Output();
+
+                    $migration = new $class('production', $version, $this->input, $this->output);
 
                     if (!($migration instanceof AbstractMigration)) {
-                        throw new \InvalidArgumentException(sprintf('The class "%s" in file "%s" must extend \Phinx\Migration\AbstractMigration', $class, $filePath));
+                        throw new InvalidArgumentException(sprintf('The class "%s" in file "%s" must extend \Phinx\Migration\AbstractMigration', $class, $filePath));
                     }
 
                     $versions[$version] = $migration;
