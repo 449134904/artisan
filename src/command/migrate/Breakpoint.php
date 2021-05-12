@@ -11,6 +11,7 @@
 
 namespace xia\migration\command\migrate;
 
+use InvalidArgumentException;
 use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
@@ -42,7 +43,7 @@ EOT
         $removeAll = $input->getOption('remove-all');
 
         if ($version && $removeAll) {
-            throw new \InvalidArgumentException('Cannot toggle a breakpoint and remove all breakpoints at the same time.');
+            throw new InvalidArgumentException('Cannot toggle a breakpoint and remove all breakpoints at the same time.');
         }
 
         // Remove all breakpoints
