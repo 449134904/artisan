@@ -4,7 +4,7 @@
 namespace xia\migration;
 
 
-use xia\migration\command\db\Table;
+use xia\migration\db\Table;
 use Phinx\Migration\AbstractMigration;
 
 class Migrator extends AbstractMigration

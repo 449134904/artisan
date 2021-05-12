@@ -161,8 +161,8 @@ abstract class Migrate extends Command
                     $this->throwNew(!class_exists($class), sprintf('Could not find class "%s" in file "%s"', $class, $filePath));
 
 
-                    $this->input  = new Input();
-                    $this->output = new Output();
+                    //$this->input  = new Input();
+                    //$this->output = new Output();
 
                     $migration = new $class('production', $version, $this->input, $this->output);
                     $this->throwNew(!($migration instanceof AbstractMigration), sprintf('The class "%s" in file "%s" must extend \Phinx\Migration\AbstractMigration', $class, $filePath));
