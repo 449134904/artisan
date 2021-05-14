@@ -94,11 +94,10 @@ EOT
 
         if (null === $version) {
             $version = max(array_merge($versions, array_keys($migrations)));
-        } else {
-            if (0 != $version && !isset($migrations[$version])) {
-                $this->output->writeln(sprintf('<comment>warning</comment> %s is not a valid version', $version));
-                return;
-            }
+        } else if (0 != $version && !isset($migrations[$version])) {
+            $this->output->writeln(sprintf('<comment>warning</comment> %s is not a valid version', $version));
+            return;
+
         }
 
         // are we migrating up or down?
