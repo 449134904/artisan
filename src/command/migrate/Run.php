@@ -9,6 +9,8 @@
 
 namespace xia\migration\command\migrate;
 
+use DateTime;
+use Exception;
 use Phinx\Migration\MigrationInterface;
 use think\console\Input;
 use think\console\input\Option as InputOption;
@@ -23,9 +25,9 @@ class Run extends Migrate
     protected function configure()
     {
         $this->setName('migrate:run')
-            ->setDescription('Migrate the database')
-            ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to migrate to')
-            ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to migrate to')
+            ->setDescription('迁移数据库')
+            ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, '迁移到的版本号')
+            ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, '迁移日期')
             ->setHelp(<<<EOT
 The <info>migrate:run</info> command runs all available migrations, optionally up to a specific version
 
@@ -39,10 +41,12 @@ EOT
     }
 
     /**
-     * Migrate the database.
-     *
-     * @param Input  $input
+     * @param Input $input
      * @param Output $output
+     * @return void
+     * @throws Exception
+     * @author : 小夏
+     * @date   : 2021-05-14 10:33:16
      */
     protected function execute(Input $input, Output $output)
     {
@@ -52,9 +56,8 @@ EOT
         // run the migrations
         $start = microtime(true);
         if (null !== $date) {
-            $this->migrateToDateTime(new \DateTime($date));
+            $this->migrateToDateTime(new DateTime($date));
         } else {
-            //$this->migrations = $version;
             $this->migrate($version);
         }
         $end = microtime(true);
@@ -63,7 +66,7 @@ EOT
         $output->writeln('<comment>All Done. Took ' . sprintf('%.4fs', $end - $start) . '</comment>');
     }
 
-    public function migrateToDateTime(\DateTime $dateTime)
+    public function migrateToDateTime(DateTime $dateTime)
     {
         $versions   = array_keys($this->getMigrations());
         $dateString = $dateTime->format('YmdHis');
@@ -122,7 +125,7 @@ EOT
             }
 
             if (!in_array($migration->getVersion(), $versions)) {
-                $this->executeMigration($migration, MigrationInterface::UP);
+                $this->executeMigration($migration);
             }
         }
     }
