@@ -128,8 +128,8 @@ abstract class Migrate extends Command
                     }
 
                     // instantiate it
-                    $this->input  = new Input();
-                    $this->output = new Output();
+                    //$this->input  = new Input();
+                    //$this->output = new Output();
 
                     $migration = new $class('production', $version, $this->input, $this->output);
 

@@ -32,7 +32,7 @@ use Phinx\Db\Table\Table;
 use Phinx\Db\Util\AlterInstructions;
 use Phinx\Migration\MigrationInterface;
 use RuntimeException;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Phinx PDO Adapter.

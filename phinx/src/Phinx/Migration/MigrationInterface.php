@@ -8,8 +8,8 @@
 namespace Phinx\Migration;
 
 use Phinx\Db\Adapter\AdapterInterface;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 
 /**
  * Migration interface
@@ -55,11 +55,10 @@ interface MigrationInterface
     public function getAdapter();
 
     /**
-     * Sets the input object to be used in migration object
-     *
-     * @param \Symfony\Component\Console\Input\InputInterface $input Input
-     *
-     * @return \Phinx\Migration\MigrationInterface
+     * @param InputInterface $input
+     * @return mixed
+     * @author : 小夏
+     * @date   : 2021-05-13 11:42:7
      */
     public function setInput(InputInterface $input);
 
@@ -71,11 +70,10 @@ interface MigrationInterface
     public function getInput();
 
     /**
-     * Sets the output object to be used in migration object
-     *
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Output
-     *
-     * @return \Phinx\Migration\MigrationInterface
+     * @param OutputInterface $output
+     * @return mixed
+     * @author : 小夏
+     * @date   : 2021-05-13 11:42:14
      */
     public function setOutput(OutputInterface $output);
 

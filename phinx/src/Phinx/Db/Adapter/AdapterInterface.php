@@ -10,9 +10,10 @@ namespace Phinx\Db\Adapter;
 use Phinx\Db\Table\Column;
 use Phinx\Db\Table\Table;
 use Phinx\Migration\MigrationInterface;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-
+//use Symfony\Component\Console\Input\InputInterface;
+//use Symfony\Component\Console\Output\OutputInterface;
+use think\console\Input as InputInterface;
+use think\console\Output as OutputInterface;
 /**
  * Adapter Interface.
  *
@@ -116,34 +117,32 @@ interface AdapterInterface
     public function getOption($name);
 
     /**
-     * Sets the console input.
-     *
-     * @param \Symfony\Component\Console\Input\InputInterface $input Input
-     *
-     * @return \Phinx\Db\Adapter\AdapterInterface
+     * @param InputInterface $input
+     * @return mixed
+     * @author : 小夏
+     * @date   : 2021-05-14 9:41:47
      */
     public function setInput(InputInterface $input);
 
     /**
-     * Gets the console input.
-     *
-     * @return \Symfony\Component\Console\Input\InputInterface
+     * @return mixed
+     * @author : 小夏
+     * @date   : 2021-05-14 9:41:50
      */
     public function getInput();
 
     /**
-     * Sets the console output.
-     *
-     * @param \Symfony\Component\Console\Output\OutputInterface $output Output
-     *
-     * @return \Phinx\Db\Adapter\AdapterInterface
+     * @param OutputInterface $output
+     * @return mixed
+     * @author : 小夏
+     * @date   : 2021-05-14 9:41:54
      */
     public function setOutput(OutputInterface $output);
 
     /**
-     * Gets the console output.
-     *
-     * @return \Symfony\Component\Console\Output\OutputInterface
+     * @return mixed
+     * @author : 小夏
+     * @date   : 2021-05-14 9:42:2
      */
     public function getOutput();
 

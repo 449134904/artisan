@@ -97,9 +97,9 @@ class Table extends \Phinx\Db\Table
      * @param string $updatedAtColumnName
      * @return \Phinx\Db\Table|Table
      */
-    public function addTimestamps($createdAtColumnName = 'create_time', $updatedAtColumnName = 'update_time')
+    public function addTimestamps($createdAtColumnName = 'create_time', $updatedAtColumnName = 'update_time', $withTimezone = false)
     {
-        return parent::addTimestamps($createdAtColumnName, $updatedAtColumnName);
+        return parent::addTimestamps($createdAtColumnName, $updatedAtColumnName, $withTimezone = false);
     }
 
     /**

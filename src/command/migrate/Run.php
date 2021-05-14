@@ -54,6 +54,7 @@ EOT
         if (null !== $date) {
             $this->migrateToDateTime(new \DateTime($date));
         } else {
+            //$this->migrations = $version;
             $this->migrate($version);
         }
         $end = microtime(true);
