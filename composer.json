@@ -15,7 +15,7 @@
   "autoload": {
     "psr-4": {
       "Phinx\\": "phinx/src/Phinx",
-      "xia\\migration\\": "src"
+      "think\\migration\\": "src"
     }
   },
   "extra": {
