@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command;
+namespace think\migration\command;
 
 use InvalidArgumentException;
 use Phinx\Db\Adapter\AdapterFactory;
@@ -17,8 +17,8 @@ use Phinx\Db\Adapter\ProxyAdapter;
 use Phinx\Migration\AbstractMigration;
 use Phinx\Migration\MigrationInterface;
 use Phinx\Util\Util;
-use xia\migration\Command;
-use xia\migration\Migrator;
+use think\migration\Command;
+use think\migration\Migrator;
 
 abstract class Migrate extends Command
 {

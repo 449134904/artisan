@@ -7,7 +7,7 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command\migrate;
+namespace think\migration\command\migrate;
 
 use InvalidArgumentException;
 use RuntimeException;
@@ -15,7 +15,7 @@ use think\console\Command;
 use think\console\Input;
 use think\console\input\Argument as InputArgument;
 use think\console\Output;
-use xia\migration\Creator;
+use think\migration\Creator;
 
 class Create extends Command
 {

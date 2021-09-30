@@ -8,10 +8,10 @@
 // +----------------------------------------------------------------------
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
-namespace xia\migration;
+namespace think\migration;
 
 use Phinx\Migration\AbstractMigration;
-use xia\migration\db\Table;
+use think\migration\db\Table;
 
 class Migrator extends AbstractMigration
 {

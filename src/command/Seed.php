@@ -9,13 +9,13 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command;
+namespace think\migration\command;
 
 use InvalidArgumentException;
 use Phinx\Seed\AbstractSeed;
 use Phinx\Util\Util;
-use xia\migration\Command;
-use xia\migration\Seeder;
+use think\migration\Command;
+use think\migration\Seeder;
 
 abstract class Seed extends Command
 {

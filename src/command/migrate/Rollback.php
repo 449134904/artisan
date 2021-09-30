@@ -7,13 +7,13 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command\migrate;
+namespace think\migration\command\migrate;
 
 use Phinx\Migration\MigrationInterface;
 use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
-use xia\migration\command\Migrate;
+use think\migration\command\Migrate;
 
 class Rollback extends Migrate
 {

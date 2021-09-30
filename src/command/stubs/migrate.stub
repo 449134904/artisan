@@ -1,6 +1,6 @@
 <?php
 
-use xia\migration\Migrator;
+use think\migration\Migrator;
 
 class MigratorClass extends Migrator
 {

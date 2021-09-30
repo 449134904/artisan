@@ -1,6 +1,6 @@
 <?php
 
-namespace xia\migration;
+namespace think\migration;
 
 use InvalidArgumentException;
 use Phinx\Util\Util;

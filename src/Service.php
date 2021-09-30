@@ -9,18 +9,18 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration;
+namespace think\migration;
 
 //use Faker\Factory as FakerFactory;
 //use Faker\Generator as FakerGenerator;
-use xia\migration\command\factory\Create as FactoryCreate;
-use xia\migration\command\migrate\Breakpoint as MigrateBreakpoint;
-use xia\migration\command\migrate\Create as MigrateCreate;
-use xia\migration\command\migrate\Rollback as MigrateRollback;
-use xia\migration\command\migrate\Run as MigrateRun;
-use xia\migration\command\migrate\Status as MigrateStatus;
-use xia\migration\command\seed\Create as SeedCreate;
-use xia\migration\command\seed\Run as SeedRun;
+use think\migration\command\factory\Create as FactoryCreate;
+use think\migration\command\migrate\Breakpoint as MigrateBreakpoint;
+use think\migration\command\migrate\Create as MigrateCreate;
+use think\migration\command\migrate\Rollback as MigrateRollback;
+use think\migration\command\migrate\Run as MigrateRun;
+use think\migration\command\migrate\Status as MigrateStatus;
+use think\migration\command\seed\Create as SeedCreate;
+use think\migration\command\seed\Run as SeedRun;
 
 class Service extends \think\Service
 {

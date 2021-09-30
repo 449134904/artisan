@@ -1,7 +1,7 @@
 <?php
 
-use xia\migration\Factory;
-use xia\migration\FactoryBuilder;
+use think\migration\Factory;
+use think\migration\FactoryBuilder;
 
 if (!function_exists('factory')) {
     /**

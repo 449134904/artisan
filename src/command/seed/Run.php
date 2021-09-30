@@ -7,13 +7,13 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command\seed;
+namespace think\migration\command\seed;
 
 use Phinx\Seed\SeedInterface;
 use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
-use xia\migration\command\Seed;
+use think\migration\command\Seed;
 
 class Run extends Seed
 {

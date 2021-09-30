@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command\factory;
+namespace think\migration\command\factory;
 
 use InvalidArgumentException;
 use Phinx\Util\Util;

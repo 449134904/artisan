@@ -7,13 +7,13 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command\seed;
+namespace think\migration\command\seed;
 
 use Phinx\Util\Util;
 use think\console\Input;
 use think\console\input\Argument as InputArgument;
 use think\console\Output;
-use xia\migration\command\Seed;
+use think\migration\command\Seed;
 
 class Create extends Seed
 {

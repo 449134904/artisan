@@ -1,11 +1,11 @@
 <?php
 
-namespace xia\migration;
+namespace think\migration;
 
 use Faker\Generator as Faker;
 use InvalidArgumentException;
-use xia\Collection;
-use xia\Model;
+use think\Collection;
+use think\Model;
 
 class FactoryBuilder
 {
