@@ -1,35 +1,27 @@
 <?php
-
-
-namespace xia\migration;
-
+// +----------------------------------------------------------------------
+// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2016 http://thinkphp.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: yunwuxin <448901948@qq.com>
+// +----------------------------------------------------------------------
+namespace think\migration;
 
 use InvalidArgumentException;
 use Phinx\Db\Adapter\AdapterFactory;
-use Phinx\Db\Adapter\AdapterInterface;
-use think\Config;
-use think\Db;
-use think\Exception;
 
 abstract class Command extends \think\console\Command
 {
-    protected $database = 'database';
-
-    /**
-     * @return AdapterInterface
-     * @throws Exception
-     * @author : 小夏
-     * @date   : 2021-04-28 14:01:28
-     */
-    public function getAdapter(): AdapterInterface
+    public function getAdapter()
     {
-
         if (isset($this->adapter)) {
             return $this->adapter;
         }
 
         $options = $this->getDbConfig();
-
         $adapter = AdapterFactory::instance()->getAdapter($options['adapter'], $options);
 
         if ($adapter->hasOption('table_prefix') || $adapter->hasOption('table_suffix')) {
@@ -44,15 +36,13 @@ abstract class Command extends \think\console\Command
     /**
      * 获取数据库配置
      * @return array
-     * @throws Exception
-     * @author : 小夏
-     * @date   : 2021-04-27 10:52:15
      */
     protected function getDbConfig(): array
     {
-        $config = Db::connect($this->database)->getConfig();
+        $default = $this->app->config->get('database.default');
+        $config  = $this->app->config->get("database.connections.{$default}");
 
-        if ($config['deploy'] == 0) {
+        if (0 == $config['deploy']) {
             $dbConfig = [
                 'adapter'       => $config['type'],
                 'host'          => $config['hostname'],
@@ -78,18 +68,14 @@ abstract class Command extends \think\console\Command
             ];
         }
 
-        $dbConfig['default_migration_table'] = $this->getConfig('table', $dbConfig['table_prefix'] . 'migrations');
+        $table = $this->app->config->get('database.migration_table', 'migration');
+
+        $dbConfig['default_migration_table'] = $dbConfig['table_prefix'] . $table;
 
         return $dbConfig;
     }
 
-    protected function getConfig($name, $default = null)
-    {
-        $config = Config::get('migration');
-        return $config[$name] ?? $default;
-    }
-
-    protected function verifyMigrationDirectory($path)
+    protected function verifyMigrationDirectory(string $path)
     {
         if (!is_dir($path)) {
             throw new InvalidArgumentException(sprintf('Migration directory "%s" does not exist', $path));

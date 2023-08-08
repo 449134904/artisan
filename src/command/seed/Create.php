@@ -7,15 +7,13 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command\seed;
+namespace think\migration\command\seed;
 
-use xia\migration\command\Seed;
-use InvalidArgumentException;
 use Phinx\Util\Util;
 use think\console\Input;
-use think\console\Output;
 use think\console\input\Argument as InputArgument;
-
+use think\console\Output;
+use think\migration\command\Seed;
 
 class Create extends Seed
 {
@@ -31,17 +29,19 @@ class Create extends Seed
     }
 
     /**
-     * @param Input $input
+     * Create the new seeder.
+     *
+     * @param Input  $input
      * @param Output $output
      * @return void
-     * @author : 小夏
-     * @date   : 2021-04-28 16:25:43
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
      */
     protected function execute(Input $input, Output $output)
     {
         $path = $this->getPath();
 
-        if (!file_exists($path) && $this->output->confirm($this->input, 'Create seeds directory? [y]/n')) {
+        if (!file_exists($path)) {
             mkdir($path, 0755, true);
         }
 
@@ -52,31 +52,31 @@ class Create extends Seed
         $className = $input->getArgument('name');
 
         if (!Util::isValidPhinxClassName($className)) {
-            throw new InvalidArgumentException(sprintf('The seed class name "%s" is invalid. Please use CamelCase format', $className));
+            throw new \InvalidArgumentException(sprintf('The seed class name "%s" is invalid. Please use CamelCase format', $className));
         }
 
         // Compute the file path
-        $filePath = $path . DS . $className . '.php';
+        $filePath = $path . DIRECTORY_SEPARATOR . $className . '.php';
 
         if (is_file($filePath)) {
-            throw new InvalidArgumentException(sprintf('The file "%s" already exists', basename($filePath)));
+            throw new \InvalidArgumentException(sprintf('The file "%s" already exists', basename($filePath)));
         }
 
         // inject the class names appropriate to this seeder
         $contents = file_get_contents($this->getTemplate());
         $classes  = [
-            '$className' => $className
+            'SeederClass' => $className,
         ];
         $contents = strtr($contents, $classes);
 
         if (false === file_put_contents($filePath, $contents)) {
-            throw new InvalidArgumentException(sprintf('The file "%s" could not be written to', $path));
+            throw new \RuntimeException(sprintf('The file "%s" could not be written to', $path));
         }
 
         $output->writeln('<info>created</info> .' . str_replace(getcwd(), '', $filePath));
     }
 
-    protected function getTemplate(): string
+    protected function getTemplate()
     {
         return __DIR__ . '/../stubs/seed.stub';
     }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace xia\migration\command;
+namespace think\migration\command;
 
 
 use Symfony\Component\Console\Formatter\OutputFormatterInterface;

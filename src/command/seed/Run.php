@@ -7,14 +7,13 @@
 // | Author: zhangyajun <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command\seed;
+namespace think\migration\command\seed;
 
-use xia\migration\command\Seed;
 use Phinx\Seed\SeedInterface;
 use think\console\Input;
 use think\console\input\Option as InputOption;
 use think\console\Output;
-
+use think\migration\command\Seed;
 
 class Run extends Seed
 {
@@ -29,9 +28,9 @@ class Run extends Seed
              ->setHelp(<<<EOT
                 The <info>seed:run</info> command runs all available or individual seeders
 
-<info>php console seed:run</info>
-<info>php console seed:run -s UserSeeder</info>
-<info>php console seed:run -v</info>
+<info>php think seed:run</info>
+<info>php think seed:run -s UserSeeder</info>
+<info>php think seed:run -v</info>
 
 EOT
              );

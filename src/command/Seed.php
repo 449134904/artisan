@@ -9,12 +9,13 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace xia\migration\command;
+namespace think\migration\command;
 
-use xia\migration\Seeder;
+use InvalidArgumentException;
 use Phinx\Seed\AbstractSeed;
 use Phinx\Util\Util;
-use xia\migration\Command;
+use think\migration\Command;
+use think\migration\Seeder;
 
 abstract class Seed extends Command
 {
@@ -24,57 +25,49 @@ abstract class Seed extends Command
      */
     protected $seeds;
 
-    /**
-     * @return string
-     * @author : 小夏
-     * @date   : 2021-04-28 16:22:58
-     */
-    protected function getPath(): string
+    protected function getPath()
     {
-        return $this->getConfig('path', ROOT_PATH . 'database') . DS . 'seeds';
+        return $this->app->getRootPath() . 'database' . DIRECTORY_SEPARATOR . 'seeds';
     }
 
-    /**
-     * @return Seeder[]|array
-     * @author : 小夏
-     * @date   : 2021-04-28 16:23:5
-     */
-    public function getSeeds(): array
+    public function getSeeds()
     {
         if (null === $this->seeds) {
-            $phpFiles = glob($this->getPath() . DS . '*.php', defined('GLOB_BRACE') ? GLOB_BRACE : 0);
+            $phpFiles = glob($this->getPath() . DIRECTORY_SEPARATOR . '*.php', defined('GLOB_BRACE') ? GLOB_BRACE : 0);
+
             // filter the files to only get the ones that match our naming scheme
             $fileNames = [];
-            /** @var Seeder[] $seedsArr */
-            $seedsArr = [];
+            /** @var Seeder[] $seeds */
+            $seeds = [];
 
             foreach ($phpFiles as $filePath) {
                 if (Util::isValidSeedFileName(basename($filePath))) {
                     // convert the filename to a class name
                     $class             = pathinfo($filePath, PATHINFO_FILENAME);
                     $fileNames[$class] = basename($filePath);
+
                     // load the seed file
                     /** @noinspection PhpIncludeInspection */
                     require_once $filePath;
-                    $this->throwNew(!class_exists($class), sprintf('Could not find class "%s" in file "%s"', $class, $filePath));
+                    if (!class_exists($class)) {
+                        throw new InvalidArgumentException(sprintf('Could not find class "%s" in file "%s"', $class, $filePath));
+                    }
+
                     // instantiate it
                     $seed = new $class($this->input, $this->output);
-                    $this->throwNew(!($seed instanceof AbstractSeed), sprintf('The class "%s" in file "%s" must extend \Phinx\Seed\AbstractSeed', $class, $filePath));
-                    $seedsArr[$class] = $seed;
+
+                    if (!($seed instanceof AbstractSeed)) {
+                        throw new InvalidArgumentException(sprintf('The class "%s" in file "%s" must extend \Phinx\Seed\AbstractSeed', $class, $filePath));
+                    }
+
+                    $seeds[$class] = $seed;
                 }
             }
 
-            ksort($seedsArr);
-            $this->seeds = $seedsArr;
+            ksort($seeds);
+            $this->seeds = $seeds;
         }
 
         return $this->seeds;
-    }
-
-    public function throwNew($type, $message)
-    {
-        if ($type) {
-            throw new \InvalidArgumentException($message);
-        }
     }
 }

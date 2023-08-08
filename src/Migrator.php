@@ -1,11 +1,17 @@
 <?php
+// +----------------------------------------------------------------------
+// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2016 http://thinkphp.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: yunwuxin <448901948@qq.com>
+// +----------------------------------------------------------------------
+namespace think\migration;
 
-
-namespace xia\migration;
-
-
-use xia\migration\command\db\Table;
 use Phinx\Migration\AbstractMigration;
+use think\migration\db\Table;
 
 class Migrator extends AbstractMigration
 {
@@ -16,10 +22,6 @@ class Migrator extends AbstractMigration
      */
     public function table($tableName, $options = [])
     {
-
-        $table = new Table($tableName, $options, $this->getAdapter());
-        $this->tables[] = $table;
-
-        return $table;
+        return new Table($tableName, $options, $this->getAdapter());
     }
 }
