@@ -69,12 +69,19 @@ EOT
             $this->output->writeln("start cmf core migration:");
         }
 
-        $migrate = new Migrate($appName, $pluginName);
-        $migrate->setOutput($this->output);
-        if (null !== $date) {
-            $migrate->migrateToDateTime(new DateTime($date));
-        } else {
-            $migrate->migrate($version);
+        try {
+            $migrate = new Migrate($appName, $pluginName);
+            $migrate->setOutput($this->output);
+            if (null !== $date) {
+                $migrate->migrateToDateTime(new DateTime($date));
+            } else {
+                $migrate->migrate($version);
+            }
+        } catch (\Exception $e) {
+            echo $e->getTraceAsString();
+            $this->output->writeln("error!!! " . $e->getMessage());
+            $this->output->writeln("Please check if ThinkCMF has been installed OR the database config in 'data/config/database.php' !!!");;
+            return;
         }
 
         if (empty($appName) && empty($pluginName)) {
